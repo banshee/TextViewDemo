@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:weightSum="1">
+  <TableLayout
+    android:layout_width="match_parent"
+    android:id="@+id/tableLayout1"
+    android:layout_height="wrap_content"
+    android:shrinkColumns="*" android:layout_weight="0">
+    <TableRow
+      android:id="@+id/tableRow1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <CheckBox
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/verticalScrolling" android:id="@+id/verticalScrolling"></CheckBox>
+      <CheckBox
+        android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/horizontalScrolling" android:id="@+id/horizontalScrolling"></CheckBox>
+    </TableRow>
+    <TableRow
+      android:id="@+id/tableRow2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+        <RadioGroup android:id="@+id/radioGroup1" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:id="@+id/isTextView" android:text="@string/textView"></RadioButton>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/isEditText" android:text="@string/isEditText"></RadioButton>
+        </RadioGroup>
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/useScrollingMovementMethod" android:layout_width="wrap_content" android:text="@string/scrollingMovementMethod"></CheckBox>
+    </TableRow>
+    <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <CheckBox android:id="@+id/clickable" android:text="@string/clickable" android:layout_height="wrap_content" android:layout_width="wrap_content"></CheckBox>
+        <CheckBox android:id="@+id/longClickable" android:text="@string/longClickable" android:layout_height="wrap_content" android:layout_width="wrap_content"></CheckBox>
+    </TableRow>
+    <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/singleLine" android:layout_width="wrap_content" android:text="@string/singleLine"></CheckBox>
+    </TableRow>
+    <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+  </TableLayout>
+  <FrameLayout
+      android:id="@+id/textViewHolder"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+  </FrameLayout>
+</LinearLayout>
