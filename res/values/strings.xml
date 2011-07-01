@@ -12,4 +12,5 @@
     <string name="clickable">Clickable</string>
     <string name="longClickable">Long Clickable</string>
     <string name="singleLine">Single Line</string>
+    <string name="cursorVisible">Cursor Visible</string>
 </resources>

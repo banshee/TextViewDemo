@@ -85,7 +85,12 @@ public class TextViewDemoActivity extends Activity {
     tv.setSingleLine(singleLineCheckbox.isChecked());
     singleLineCheckbox.setOnCheckedChangeListener(resetOptionsListener);
 
-    EditText edtv = (EditText) tv;
+    if (tv instanceof EditText) {
+      EditText editText = (EditText) tv;
+
+      CheckBox cursorVisibleCheckBox = (CheckBox) findViewById(R.id.cursorVisible);
+      editText.setCursorVisible(cursorVisibleCheckBox.isChecked());
+    }
 
     FrameLayout holder = (FrameLayout) findViewById(R.id.textViewHolder);
     holder.removeAllViews();
