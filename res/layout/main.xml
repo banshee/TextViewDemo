@@ -38,7 +38,10 @@
         <CheckBox android:layout_height="wrap_content" android:id="@+id/singleLine" android:layout_width="wrap_content" android:text="@string/singleLine"></CheckBox>
         <CheckBox android:layout_height="wrap_content" android:id="@+id/cursorVisible" android:layout_width="wrap_content" android:text="@string/cursorVisible"></CheckBox>
     </TableRow>
-    <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+    <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/spannableText" android:layout_width="wrap_content" android:text="@string/spannableText"></CheckBox>
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/focusable" android:layout_width="wrap_content" android:text="@string/focusable"></CheckBox>
+    </TableRow>
   </TableLayout>
   <FrameLayout
       android:id="@+id/textViewHolder"

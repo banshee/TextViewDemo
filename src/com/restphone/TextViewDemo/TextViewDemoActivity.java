@@ -8,24 +8,27 @@ package com.restphone.TextViewDemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.MovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TextViewDemoActivity extends Activity {
+  TextViewDemoActivity self = this;
+
   OnCheckedChangeListener resetOptionsListener = new OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
       buildTextViewOptions();
+      Toast.makeText(self, "created new view", Toast.LENGTH_SHORT).show();
     }
-
   };
 
   android.widget.RadioGroup.OnCheckedChangeListener resetOptionsRadioListener = new RadioGroup.OnCheckedChangeListener() {
@@ -40,21 +43,29 @@ public class TextViewDemoActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
-    buildTextViewOptions();
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        buildTextViewOptions();
+      }
+    }, 1000);
   }
 
   private void buildTextViewOptions() {
     TextView tv;
 
-    if (((RadioButton) findViewById(R.id.isEditText)).isChecked()) {
-      tv = new EditText(this);
-    } else if (((RadioButton) findViewById(R.id.isTextView)).isChecked()) {
-      tv = new TextView(this);
-    } else {
-      throw new RuntimeException("Must choose a type of text control");
-    }
     RadioGroup viewTypeRadioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
     viewTypeRadioGroup.setOnCheckedChangeListener(resetOptionsRadioListener);
+    switch (viewTypeRadioGroup.getCheckedRadioButtonId()) {
+    case R.id.isEditText:
+      tv = new EditText(this);
+      break;
+    case R.id.isTextView:
+      tv = new TextView(this);
+      break;
+    default:
+      throw new RuntimeException("Must choose a type of text control");
+    }
 
     CheckBox verticalScrollingCheckbox = (CheckBox) findViewById(R.id.verticalScrolling);
     tv.setVerticalScrollBarEnabled(verticalScrollingCheckbox.isChecked());
@@ -79,18 +90,24 @@ public class TextViewDemoActivity extends Activity {
     tv.setLongClickable(longclickableCheckbox.isChecked());
     longclickableCheckbox.setOnCheckedChangeListener(resetOptionsListener);
 
-    tv.setText(sampleString());
-
     CheckBox singleLineCheckbox = (CheckBox) findViewById(R.id.singleLine);
     tv.setSingleLine(singleLineCheckbox.isChecked());
     singleLineCheckbox.setOnCheckedChangeListener(resetOptionsListener);
 
-    if (tv instanceof EditText) {
-      EditText editText = (EditText) tv;
+    CheckBox cursorVisibleCheckBox = (CheckBox) findViewById(R.id.cursorVisible);
+    tv.setCursorVisible(cursorVisibleCheckBox.isChecked());
+    cursorVisibleCheckBox.setOnCheckedChangeListener(resetOptionsListener);
 
-      CheckBox cursorVisibleCheckBox = (CheckBox) findViewById(R.id.cursorVisible);
-      editText.setCursorVisible(cursorVisibleCheckBox.isChecked());
+    CheckBox spannableTextCheckBox = (CheckBox) findViewById(R.id.spannableText);
+    if (spannableTextCheckBox.isChecked()) {
+      tv.setText(sampleString(), TextView.BufferType.SPANNABLE);
+    } else {
+      tv.setText(sampleString());
     }
+
+    CheckBox focusableCheckBox = (CheckBox) findViewById(R.id.focusable);
+    tv.setFocusable(focusableCheckBox.isChecked());
+    focusableCheckBox.setOnCheckedChangeListener(resetOptionsListener);
 
     FrameLayout holder = (FrameLayout) findViewById(R.id.textViewHolder);
     holder.removeAllViews();
@@ -99,7 +116,7 @@ public class TextViewDemoActivity extends Activity {
 
   private String sampleString() {
     StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 100; i++) {
       sb.append(Integer.toString(i) + " ");
     }
     return sb.toString();
