@@ -38,14 +38,17 @@
         <CheckBox android:layout_height="wrap_content" android:id="@+id/singleLine" android:layout_width="wrap_content" android:text="@string/singleLine"></CheckBox>
         <CheckBox android:layout_height="wrap_content" android:id="@+id/cursorVisible" android:layout_width="wrap_content" android:text="@string/cursorVisible"></CheckBox>
     </TableRow>
-    <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <TableRow android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tableRow5">
         <CheckBox android:layout_height="wrap_content" android:id="@+id/spannableText" android:layout_width="wrap_content" android:text="@string/spannableText"></CheckBox>
         <CheckBox android:layout_height="wrap_content" android:id="@+id/focusable" android:layout_width="wrap_content" android:text="@string/focusable"></CheckBox>
+    </TableRow>
+    <TableRow android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/tableRow6" android:layout_width="match_parent">
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/linkMovementMethod" android:layout_width="wrap_content" android:text="@string/linkMovementMethod"></CheckBox>
     </TableRow>
   </TableLayout>
   <FrameLayout
       android:id="@+id/textViewHolder"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content" android:layout_weight="2">
   </FrameLayout>
 </LinearLayout>

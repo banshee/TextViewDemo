@@ -15,4 +15,5 @@
     <string name="cursorVisible">Cursor Visible</string>
     <string name="spannableText">Spannable Text</string>
     <string name="focusable">Focusable</string>
+    <string name="linkMovementMethod">Use link movement method</string>
 </resources>

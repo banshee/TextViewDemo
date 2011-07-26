@@ -9,8 +9,11 @@ package com.restphone.TextViewDemo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ArrowKeyMovementMethod;
 import android.text.method.MovementMethod;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -52,7 +55,7 @@ public class TextViewDemoActivity extends Activity {
   }
 
   private void buildTextViewOptions() {
-    TextView tv;
+    final TextView tv;
 
     RadioGroup viewTypeRadioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
     viewTypeRadioGroup.setOnCheckedChangeListener(resetOptionsRadioListener);
@@ -82,6 +85,13 @@ public class TextViewDemoActivity extends Activity {
     }
     useScrollingMovementMethodCheckbox.setOnCheckedChangeListener(resetOptionsListener);
 
+    CheckBox linkMovementMethodCheckbox = (CheckBox) findViewById(R.id.linkMovementMethod);
+    if (linkMovementMethodCheckbox.isChecked()) {
+      MovementMethod movementMethod = ArrowKeyMovementMethod.getInstance();
+      tv.setMovementMethod(movementMethod);
+    }
+    linkMovementMethodCheckbox.setOnCheckedChangeListener(resetOptionsListener);
+
     CheckBox clickableCheckbox = (CheckBox) findViewById(R.id.clickable);
     tv.setClickable(clickableCheckbox.isChecked());
     clickableCheckbox.setOnCheckedChangeListener(resetOptionsListener);
@@ -104,10 +114,23 @@ public class TextViewDemoActivity extends Activity {
     } else {
       tv.setText(sampleString());
     }
+    spannableTextCheckBox.setOnCheckedChangeListener(resetOptionsListener);
 
     CheckBox focusableCheckBox = (CheckBox) findViewById(R.id.focusable);
     tv.setFocusable(focusableCheckBox.isChecked());
     focusableCheckBox.setOnCheckedChangeListener(resetOptionsListener);
+
+    if (tv instanceof EditText) {
+      EditText viewAsEditView = (EditText) tv;
+    }
+
+    tv.requestFocus();
+    tv.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        tv.requestFocus();
+      }
+    });
 
     FrameLayout holder = (FrameLayout) findViewById(R.id.textViewHolder);
     holder.removeAllViews();
